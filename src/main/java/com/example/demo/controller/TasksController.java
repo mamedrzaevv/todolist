@@ -1,35 +1,36 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.TasksDTO;
-import com.example.demo.entity.Tasks;
+import com.example.demo.entity.TasksEntity;
 import com.example.demo.service.TasksService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.time.LocalDate;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 
 public class TasksController {
     private final TasksService tasksService;
 
 
     @PostMapping
-    public ResponseEntity<Tasks> create(@RequestBody TasksDTO dto) {
+    public ResponseEntity<TasksEntity> create(@RequestBody TasksDTO dto) {
         return new ResponseEntity<>(tasksService.create(dto), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<Tasks>> readAll() {
+    public ResponseEntity<List<TasksEntity>> readAll() {
         return new ResponseEntity<>(tasksService.readAll(), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Tasks> update(@RequestBody Tasks tasks) {
+    public ResponseEntity<TasksEntity> update(@RequestBody TasksEntity tasks) {
         return new ResponseEntity<>(tasksService.update(tasks), HttpStatus.OK);
     }
 
@@ -39,13 +40,18 @@ public class TasksController {
         return HttpStatus.OK;
     }
 
+    @GetMapping("/{date}")
+    public ResponseEntity<List<TasksEntity>> readByDate(@PathVariable("date") String dateString) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-
-        @GetMapping("/{date}")
-        public ResponseEntity<List<Tasks>> readByDate(@PathVariable("date") String dateString) {
-            LocalDate date = LocalDate.parse(dateString);
-            List<Tasks> tasks = tasksService.readByDate(date);
-            return new ResponseEntity<>(tasks, HttpStatus.OK);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateString, format);
+        } catch (DateTimeParseException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+        List<TasksEntity> tasks = tasksService.readByDate(date);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
+}
 
