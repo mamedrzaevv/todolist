@@ -23,6 +23,9 @@ public final class TasksEntity {
     private LocalDate date;
 
     public TasksEntity(String title, String obj, LocalDate date) {
+        this.title = title;
+        this.obj = obj;
+        this.date = date;
     }
 
 
