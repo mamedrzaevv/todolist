@@ -21,7 +21,7 @@ public class TasksController {
 
     @PostMapping
     public ResponseEntity<TasksEntity> create(@RequestBody TasksDTO dto) {
-        return new ResponseEntity<>(tasksService.create(dto), HttpStatus.OK);
+        return new ResponseEntity<>(tasksService.create(dto), HttpStatus.CREATED);
     }
 
     @GetMapping
