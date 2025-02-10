@@ -1,0 +1,6 @@
+com/example/demo/DemoApplication.class
+com/example/demo/entity/TasksEntity.class
+com/example/demo/controller/TasksController.class
+com/example/demo/service/TasksService.class
+com/example/demo/dto/TasksDTO.class
+com/example/demo/repository/TasksRepository.class

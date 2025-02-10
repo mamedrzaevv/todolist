@@ -1,0 +1,6 @@
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/DemoApplication.java
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/controller/TasksController.java
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/dto/TasksDTO.java
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/entity/TasksEntity.java
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/repository/TasksRepository.java
+/Users/ilasmamedrzaev/todolist/src/main/java/com/example/demo/service/TasksService.java

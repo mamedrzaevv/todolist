@@ -4,6 +4,7 @@ import com.example.demo.dto.TasksDTO;
 import com.example.demo.entity.TasksEntity;
 import com.example.demo.service.TasksService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,6 @@ import java.time.LocalDate;
 
 public class TasksController {
     private final TasksService tasksService;
-
 
     @PostMapping
     public ResponseEntity<TasksEntity> create(@RequestBody TasksDTO dto) {
