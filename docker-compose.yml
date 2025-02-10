@@ -1,4 +1,4 @@
-version: '2.2'
+version: '3.8'
 
 services:
   app:
@@ -13,9 +13,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     restart: always
-    networks:
-      - backend
-
+  
   db:
     image: postgres:15
     container_name: postgres_db
@@ -28,24 +26,6 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
-    networks:
-      - backend
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - app
-    networks:
-      - backend
 
 volumes:
   pg_data:
-
-networks:
-  backend:
