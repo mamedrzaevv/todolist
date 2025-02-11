@@ -1,17 +1,16 @@
 services:
-  app:
-    build: .
-    container_name: todolist_app
-    ports:
-      - "8081:8081"
-    depends_on:
+services:
+services:
+services:
+services:
+services:
+services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/todolist
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     restart: always
-
   db:
     image: postgres:15
     container_name: postgres_db
