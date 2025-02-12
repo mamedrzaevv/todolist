@@ -1,7 +1,13 @@
 FROM openjdk:22-jdk
-WORKDIR /todolist
+
+WORKDIR /app
+
 COPY . .
+
 RUN ./mvnw package -DskipTests
-RUN mv target/*.jar todolist.jar
+
+RUN mv target/*.jar app.jar
+
 EXPOSE 8081
+
 CMD ["java", "-jar", "app.jar"]
